@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework 11</title>
+</head>
+<body>
+    <script>
+        function tempFunc(callback) {
+            const temp = [];
+
+        function saveRes() {
+            const args = Array.prototype.slice.call(arguments);
+            const argStr = args.join();
+                let res;
+                let tempRes = temp.find(item => item.argStr === argStr);
+
+            if (tempRes) {
+                res = tempRes.res;
+            } else {
+            res = callback.apply(null, args);
+            temp.unshift({argStr, res});
+            temp.splice(10);
+        }
+
+            return res;
+        }
+
+            return saveRes;
+        }
+
+
+        const summ = tempFunc((a, b) => a + b);
+            console.log(summ(1,2));
+            console.log(summ(1,2));
+    </script>
+</body>
+</html>
